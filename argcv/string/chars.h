@@ -23,8 +23,8 @@
  * SOFTWARE.
  *
  **/
-#ifndef ARGCV_STRING_CHARS_H
-#define ARGCV_STRING_CHARS_H
+#ifndef ARGCV_STRING_CHARS_H_
+#define ARGCV_STRING_CHARS_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -64,4 +64,4 @@ inline int is_western_character(char ch) {
 }
 #endif
 
-#endif  // ARGCV_STRING_CHARS_H
+#endif  // ARGCV_STRING_CHARS_H_

@@ -46,7 +46,7 @@ using ::argcv::string::split;
 
 class lexicon {
  public:
-  lexicon(const std::string& dpath, size_t cache_size = 0)
+  explicit lexicon(const std::string& dpath, size_t cache_size = 0)
       : db(ldb_wr(dpath, cache_size)) {
     db.conn();
   }
@@ -100,9 +100,9 @@ class lexicon {
  private:
   ldb_wr db;
 };
-}
-}
-}
-}  // namespace argcv::ir::index::analyzer
+}  // namespace analyzer
+}  // namespace index
+}  // namespace ir
+}  // namespace argcv
 
 #endif  //  ARGCV_IR_INDEX_ANALYZER_LEXICON_HH

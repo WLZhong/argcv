@@ -26,6 +26,9 @@
 #ifndef ARGCV_IR_INDEX_ANALYZER_BASIC_ANALYZER_HH
 #define ARGCV_IR_INDEX_ANALYZER_BASIC_ANALYZER_HH
 
+#include <string>
+#include <vector>
+
 #include "analyzer.hh"
 
 #include "argcv/string/chars.h"
@@ -36,10 +39,10 @@ namespace index {
 namespace analyzer {
 class basic_analyzer : public analyzer {
  public:
-  basic_analyzer(tokenlizer* _t) : analyzer(_t) {
+  explicit basic_analyzer(tokenlizer* _t) : analyzer(_t) {
     _t->reset();
     std::string s;
-    while (_t->next(s)) {
+    while (_t->next(&s)) {
       if (s.length() > 0 && !is_western_punct(s[0])) {
         // printf("%s %d add: %s\n", __FILE__, __LINE__, s.c_str());
         data.push_back(s);
@@ -51,14 +54,14 @@ class basic_analyzer : public analyzer {
     size = data.size();
   }
 
-  bool prev(std::string& t) {
-    return begin() ? false : (t.assign(data[offset - 1]), true);
+  bool prev(std::string* t) {
+    return begin() ? false : ((*t).assign(data[offset - 1]), true);
   }
-  bool next(std::string& t) {
-    return end() ? false : (t.assign(data[offset]), offset++, true);
+  bool next(std::string* t) {
+    return end() ? false : ((*t).assign(data[offset]), offset++, true);
   }
-  bool curr(std::string& t) {
-    return end() ? false : (t.assign(data[offset]), true);
+  bool curr(std::string* t) {
+    return end() ? false : ((*t).assign(data[offset]), true);
   }
   bool reset() { return (offset = 0, true); }
   bool end() { return offset >= size; }
@@ -69,9 +72,9 @@ class basic_analyzer : public analyzer {
   size_t offset;
   size_t size;
 };
-}
-}
-}
-}  // namespace argcv::ir::index::analyzer
+}  // namespace analyzer
+}  // namespace index
+}  // namespace ir
+}  // namespace argcv
 
 #endif  //  ARGCV_IR_INDEX_ANALYZER_BASIC_ANALYZER_HH

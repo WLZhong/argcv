@@ -39,20 +39,20 @@ namespace index {
 namespace analyzer {
 class basic_tokenlizer : public tokenlizer {
  public:
-  basic_tokenlizer(const std::string& s)
+  explicit basic_tokenlizer(const std::string& s)
       : tokenlizer(s),
         data(argcv::string::stemm_s(s)),
         offset(0),
         size(data.size()) {}
 
-  bool prev(std::string& t) {
-    return begin() ? false : (t.assign(data[offset - 1]), true);
+  bool prev(std::string* t) {
+    return begin() ? false : ((*t).assign(data[offset - 1]), true);
   }
-  bool next(std::string& t) {
-    return end() ? false : (t.assign(data[offset]), offset++, true);
+  bool next(std::string* t) {
+    return end() ? false : ((*t).assign(data[offset]), offset++, true);
   }
-  bool curr(std::string& t) {
-    return end() ? false : (t.assign(data[offset]), true);
+  bool curr(std::string* t) {
+    return end() ? false : ((*t).assign(data[offset]), true);
   }
   bool reset() { return (offset = 0, true); }
   bool end() { return offset >= size; }
@@ -63,9 +63,9 @@ class basic_tokenlizer : public tokenlizer {
   size_t offset;
   size_t size;
 };
-}
-}
-}
-}  // namespace argcv::ir::index::analyzer
+}  // namespace analyzer
+}  // namespace index
+}  // namespace ir
+}  // namespace argcv
 
 #endif  //  ARGCV_IR_INDEX_ANALYZER_BASIC_TOKENLIZER_HH

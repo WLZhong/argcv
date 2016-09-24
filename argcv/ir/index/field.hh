@@ -135,7 +135,7 @@ class text_field : public string_field {
     anz.reset();
     std::string token;
     size_t pos = 0;
-    while (anz.next(token)) {
+    while (anz.next(&token)) {
       _key_vpos[token].push_back(pos);
       pos++;
     }
@@ -151,7 +151,7 @@ class vector_text_field : public field<std::string> {
          it != vec.end(); it++) {
       it->reset();
       std::string token;
-      while (it->next(token)) {
+      while (it->next(&token)) {
         _key_vpos[token].push_back(pos);
         pos++;
       }

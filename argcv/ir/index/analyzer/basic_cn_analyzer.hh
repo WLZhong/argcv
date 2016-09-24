@@ -31,6 +31,7 @@
 #include <set>
 #include <stack>
 #include <string>
+#include <vector>
 
 #include "analyzer.hh"
 #include "lexicon.hh"
@@ -44,14 +45,15 @@ namespace index {
 namespace analyzer {
 class basic_cn_analyzer : public analyzer {
  public:
-  basic_cn_analyzer(tokenlizer* _t, lexicon* _lex, size_t max_word_length = 5,
-                    size_t chunk_word_size = 3)
+  explicit basic_cn_analyzer(tokenlizer* _t, lexicon* _lex,
+                             size_t max_word_length = 5,
+                             size_t chunk_word_size = 3)
       : analyzer(_t),
         max_word_length(max_word_length),
         chunk_word_size(chunk_word_size) {
     _t->reset();
     std::string s;
-    while (_t->next(s)) {
+    while (_t->next(&s)) {
       // if (s.length() > 0 && !is_western_punct(s[0])) {
       if (s.length() > 0) {
         if (is_western_punct(s[0])) {
@@ -111,14 +113,14 @@ class basic_cn_analyzer : public analyzer {
     size = data.size();
   }
 
-  bool prev(std::string& t) {
-    return begin() ? false : (t.assign(data[offset - 1]), true);
+  bool prev(std::string* t) {
+    return begin() ? false : ((*t).assign(data[offset - 1]), true);
   }
-  bool next(std::string& t) {
-    return end() ? false : (t.assign(data[offset]), offset++, true);
+  bool next(std::string* t) {
+    return end() ? false : ((*t).assign(data[offset]), offset++, true);
   }
-  bool curr(std::string& t) {
-    return end() ? false : (t.assign(data[offset]), true);
+  bool curr(std::string* t) {
+    return end() ? false : ((*t).assign(data[offset]), true);
   }
   bool reset() { return (offset = 0, true); }
   bool end() { return offset >= size; }
@@ -183,9 +185,9 @@ class basic_cn_analyzer : public analyzer {
     return ps;
   }
 };
-}
-}
-}
-}  // namespace argcv::ir::index::analyzer
+}  // namespace analyzer
+}  // namespace index
+}  // namespace ir
+}  // namespace argcv
 
 #endif  //  ARGCV_IR_INDEX_ANALYZER_BASIC_CN_ANALYZER_HH

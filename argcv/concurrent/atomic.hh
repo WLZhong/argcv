@@ -54,7 +54,7 @@ template <typename T>
 T* atomic_fetch_xor(atomic<T*>* obj, std::ptrdiff_t arg) {
   return obj->fetch_xor(arg);
 }
-}
-}  // argcv::concurrent
+}  // namespace concurrent
+}  // namespace argcv
 
 #endif  //  ARGCV_CONCURRENT_THREADS_HH

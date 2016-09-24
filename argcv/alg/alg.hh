@@ -30,7 +30,7 @@
 #include <vector>
 
 namespace argcv {
-namespace alg {}
-}  //  namespace argcv::alg
+namespace alg {}  // namespace alg
+}  //  namespace argcv
 
 #endif  //  ARGCV_ALG_ALG_HH

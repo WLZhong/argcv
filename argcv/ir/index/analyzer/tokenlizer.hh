@@ -36,14 +36,14 @@ namespace index {
 namespace analyzer {
 class tokenlizer : public token_seeker {
  public:
-  tokenlizer(const std::string& s) : token_seeker(), s(s) {}
+  explicit tokenlizer(const std::string& s) : token_seeker(), s(s) {}
 
  protected:
   const std::string s;
 };
-}
-}
-}
-}  // namespace argcv::ir::index::analyzer
+}  // namespace analyzer
+}  // namespace index
+}  // namespace ir
+}  // namespace argcv
 
 #endif  //  ARGCV_IR_INDEX_ANALYZER_TOKENLIZER_HH

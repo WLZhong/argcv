@@ -1,1 +1,0 @@
-This project can be found in http://svmlight.joachims.org/

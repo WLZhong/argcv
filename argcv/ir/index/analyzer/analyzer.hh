@@ -38,22 +38,22 @@ namespace index {
 namespace analyzer {
 class analyzer : public token_seeker {
  public:
-  analyzer(tokenlizer* _t) : token_seeker(), _t(_t) {}
+  explicit analyzer(tokenlizer* _t) : token_seeker(), _t(_t) {}
 
   std::vector<std::string> to_vec() {
     std::vector<std::string> _v;
     std::string s;
     reset();
-    while (next(s)) _v.push_back(s);
+    while (next(&s)) _v.push_back(s);
     return _v;
   }
 
  protected:
   tokenlizer* _t;
 };
-}
-}
-}
-}  // namespace argcv::ir::index::analyzer
+}  // namespace analyzer
+}  // namespace index
+}  // namespace ir
+}  // namespace argcv
 
 #endif  //  ARGCV_IR_INDEX_ANALYZER_ANALYZER_HH

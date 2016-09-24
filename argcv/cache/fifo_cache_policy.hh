@@ -28,7 +28,7 @@
 
 #include <cstdio>
 
-// TODO
+// TODO(yuikns):
 namespace argcv {
 namespace cache {
 class fifo_cache_policy {};
