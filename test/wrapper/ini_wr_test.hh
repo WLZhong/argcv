@@ -25,11 +25,12 @@
  **/
 #ifndef ARGCV_TEST_WRAPPER_INI_WR_TEST_HH
 #define ARGCV_TEST_WRAPPER_INI_WR_TEST_HH
-#include "test/argcv_test.h"
 
 #include <map>
 #include <set>
 #include <string>
+
+#include "test/argcv_test.h"
 
 #include "argcv/wrapper/ini_wr.hh"
 using namespace argcv::string;

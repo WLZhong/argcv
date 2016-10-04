@@ -25,11 +25,12 @@
  **/
 #ifndef ARGCV_TEST_WRAPPER_LEVELDB_WR_TEST_HH
 #define ARGCV_TEST_WRAPPER_LEVELDB_WR_TEST_HH
-#include "test/argcv_test.h"
 
 #include <map>
 #include <set>
 #include <string>
+
+#include "test/argcv_test.h"
 
 #include "argcv/wrapper/leveldb_wr.hh"
 using namespace argcv::string;
@@ -37,7 +38,7 @@ using namespace argcv::wrapper::leveldb;
 
 bool test_case_leveldb_wr_key_value_printer(const std::string& k,
                                             const std::string& v, void* data) {
-  int* _offset = (int*)data;
+  int* _offset = reinterpret_cast<int*>(data);
   printf("%d key: %s \t value: %s \n", (*_offset)++, k.c_str(), v.c_str());
   return true;  //(*_offset) < 2;
 }
