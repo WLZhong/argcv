@@ -38,7 +38,7 @@ namespace index {
 namespace analyzer {
 class analyzer : public token_seeker {
  public:
-  explicit analyzer(tokenlizer* _t) : token_seeker(), _t(_t) {}
+  explicit analyzer(tokenlizer *_t) : token_seeker(), _t(_t) {}
 
   std::vector<std::string> to_vec() {
     std::vector<std::string> _v;
@@ -49,7 +49,7 @@ class analyzer : public token_seeker {
   }
 
  protected:
-  tokenlizer* _t;
+  tokenlizer *_t;
 };
 }  // namespace analyzer
 }  // namespace index

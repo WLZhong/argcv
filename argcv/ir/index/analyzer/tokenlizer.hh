@@ -36,7 +36,7 @@ namespace index {
 namespace analyzer {
 class tokenlizer : public token_seeker {
  public:
-  explicit tokenlizer(const std::string& s) : token_seeker(), s(s) {}
+  explicit tokenlizer(const std::string &s) : token_seeker(), s(s) {}
 
  protected:
   const std::string s;

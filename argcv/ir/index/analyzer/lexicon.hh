@@ -46,23 +46,26 @@ using ::argcv::string::split;
 
 class lexicon {
  public:
-  explicit lexicon(const std::string& dpath, size_t cache_size = 0)
+  explicit lexicon(const std::string &dpath, size_t cache_size = 0)
       : db(ldb_wr(dpath, cache_size)) {
     db.conn();
   }
+
   ~lexicon() { db.close(); }
 
-  void set(const std::string& term, size_t sz = 0) {
+  void set(const std::string &term, size_t sz = 0) {
     db.put(term, as_str<size_t>(sz));
   }
-  void unset(const std::string& term) { db.rm(term); }
-  size_t count(const std::string& term) {
+
+  void unset(const std::string &term) { db.rm(term); }
+
+  size_t count(const std::string &term) {
     std::string rt;
     db.get(term, &rt);
     return as_type<size_t>(rt);
   }
 
-  size_t level(const std::string& term) {
+  size_t level(const std::string &term) {
     size_t c = count(term);
     size_t lv = 0;
     while (c > 0) {
@@ -73,9 +76,9 @@ class lexicon {
   }
 
   // load files from https://github.com/ling0322/webdict/tree/master
-  size_t load(const std::string& path) {
+  size_t load(const std::string &path) {
     size_t sz = 0;
-    FILE* fp = fopen(path.c_str(), "r");
+    FILE *fp = fopen(path.c_str(), "r");
     if (fp == nullptr) {  // file not found
       return sz;
     }

@@ -45,7 +45,7 @@ namespace index {
 namespace analyzer {
 class basic_cn_analyzer : public analyzer {
  public:
-  explicit basic_cn_analyzer(tokenlizer* _t, lexicon* _lex,
+  explicit basic_cn_analyzer(tokenlizer *_t, lexicon *_lex,
                              size_t max_word_length = 5,
                              size_t chunk_word_size = 3)
       : analyzer(_t),
@@ -113,17 +113,22 @@ class basic_cn_analyzer : public analyzer {
     size = data.size();
   }
 
-  bool prev(std::string* t) {
+  bool prev(std::string *t) {
     return begin() ? false : ((*t).assign(data[offset - 1]), true);
   }
-  bool next(std::string* t) {
+
+  bool next(std::string *t) {
     return end() ? false : ((*t).assign(data[offset]), offset++, true);
   }
-  bool curr(std::string* t) {
+
+  bool curr(std::string *t) {
     return end() ? false : ((*t).assign(data[offset]), true);
   }
+
   bool reset() { return (offset = 0, true); }
+
   bool end() { return offset >= size; }
+
   bool begin() { return offset == 0; }
 
  protected:
@@ -133,7 +138,7 @@ class basic_cn_analyzer : public analyzer {
   size_t offset;
   size_t size;
 
-  bool _is_punct(const std::string& s) {
+  bool _is_punct(const std::string &s) {
     static std::set<std::string> ps = _all_cn_puncts();
     if (s.length() > 0) {
       return is_western_punct(s[0]) || ps.find(s) != ps.end();

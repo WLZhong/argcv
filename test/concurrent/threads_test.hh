@@ -33,7 +33,7 @@
 
 using namespace argcv::concurrent;
 
-static int test_case_threads(int argc, char* argv[]) {
+static int test_case_threads(int argc, char *argv[]) {
   size_t thread_size = 3;
   size_t task_size = 100;
   thread_pool pool(thread_size);
@@ -48,7 +48,7 @@ static int test_case_threads(int argc, char* argv[]) {
     }));
   }
 
-  for (auto&& result : results) {
+  for (auto &&result : results) {
     bool c_status = static_cast<bool>(result.get());
     if (!c_status) {
       all_done = false;

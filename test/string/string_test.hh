@@ -25,6 +25,7 @@
  **/
 #ifndef ARGCV_TEST_ARGCV_STRING_STRING_TEST_HH
 #define ARGCV_TEST_ARGCV_STRING_STRING_TEST_HH
+
 #include "../argcv_test.h"
 
 #include <string>
@@ -35,7 +36,7 @@
 
 using namespace argcv::string;
 
-static int test_case_string_split(int argc, char* argv[]) {
+static int test_case_string_split(int argc, char *argv[]) {
   std::string s("abc def  ghi ");
   auto v = split(s, " ", true);
   TEST_CASE_EXPECT_EQ(v.size(), 3);
@@ -52,7 +53,7 @@ static int test_case_string_split(int argc, char* argv[]) {
   return 0;
 }
 
-static int test_case_string_replace(int argc, char* argv[]) {
+static int test_case_string_replace(int argc, char *argv[]) {
   std::string s("abc def ghi");
   auto v = replace(s, "abc", "def");
   v = replace(v, "f d", "_x_");
@@ -60,7 +61,7 @@ static int test_case_string_replace(int argc, char* argv[]) {
   return 0;
 }
 
-static int test_case_uuid(int argc, char* argv[]) {
+static int test_case_uuid(int argc, char *argv[]) {
   uuid _uuid(2047);
   uuid _uuid1(_uuid.str());
   uuid _uuid2(_uuid.data());
@@ -75,7 +76,7 @@ static int test_case_uuid(int argc, char* argv[]) {
   return 0;
 }
 
-static int test_case_stemmer(int argc, char* argv[]) {
+static int test_case_stemmer(int argc, char *argv[]) {
   std::vector<std::string> elems = stemm_s(
       "Data Mining一些 中\u00A0文的 控,制 is an analytic process designed to "
       "explore data (usually large "

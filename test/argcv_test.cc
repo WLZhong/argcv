@@ -36,7 +36,7 @@
 #include "wrapper/ini_wr_test.hh"
 #include "wrapper/leveldb_wr_test.hh"
 
-static int test_case_info(int argc, char* argv[]) {
+static int test_case_info(int argc, char *argv[]) {
   argcv::argcv_info info;
   return 0;
 }
@@ -47,7 +47,7 @@ const testcase_t test_list[] = {
     test_case_leveldb_wr, test_case_ini_wr,       test_case_threads,
     test_case_dir_trav};
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
   TEST_CASE_EXPECT_GT(argc, 1);
   int testmax = sizeof(test_list) / sizeof(test_list[0]);
   int offset = atoi(argv[1]);
