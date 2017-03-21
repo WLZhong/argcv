@@ -1,0 +1,6 @@
+PYBIN=${1:-python3}
+echo "PYBIN=$PYBIN"
+#./util/python/python_config.sh --setup $(which python3)
+./util/python/python_config.sh --setup $(which $PYBIN)
+
+
