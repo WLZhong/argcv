@@ -44,12 +44,12 @@ class ExampleOfTestFTest : public testing::Test {
     Agent(ExampleOfTestFTest &m_o, int m_k) : o_(m_o), k_(m_k) {}
 
     operator int() const {
-      printf("get : %d <- %d\n", k_, o_.get(k_));
+      printf("ExampleOfTestFTest::Agent::get : %d <- %d\n", k_, o_.get(k_));
       return o_.get(k_);
     }
 
     void operator=(int v) {
-      printf("set : %d -> %d\n", k_, v);
+      printf("ExampleOfTestFTest::Agent::set : %d -> %d\n", k_, v);
       o_.set(k_, v);
     }
 
@@ -71,9 +71,9 @@ class ExampleOfTestFTest : public testing::Test {
 
   virtual void SetUp() {
     printf("ExampleOfTestFTest::SetUp start\n");
-    set(1, 2);
-    set(2, 3);
-    set(3, 4);
+    (*this)[1] = 2;
+    (*this)[2] = 3;
+    (*this)[3] = 4;
     printf("ExampleOfTestFTest::SetUp end\n");
   }
 
@@ -90,8 +90,16 @@ class ExampleOfTestFTest : public testing::Test {
   std::map<int, int> a_;
 };
 
-TEST_F(ExampleOfTestFTest, oneToTwo) { EXPECT_EQ(2, get(1)); }
+TEST_F(ExampleOfTestFTest, oneToTwo) {
+  EXPECT_EQ(2, (*this)[1]);
+  (*this)[2] = 4;
+  EXPECT_EQ(4, (*this)[2]);
+}
 
-TEST_F(ExampleOfTestFTest, twoToThree) { EXPECT_EQ(3, get(2)); }
+TEST_F(ExampleOfTestFTest, twoToThree) {
+  EXPECT_EQ(3, (*this)[2]);
+  (*this)[4] = 7;
+  EXPECT_EQ((size_t)4, size());
+}
 
 TEST_F(ExampleOfTestFTest, getSize) { EXPECT_EQ((size_t)3, size()); }
