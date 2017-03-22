@@ -29,27 +29,42 @@ cc_library(
     srcs = glob(
         [
           "sys/*.c",
-          "sys/*.cc",
+          # "sys/*.cc",
         ],
         exclude = [
           "sys/*_test.cc",
         ],
     ),
-    hdrs = glob([
-        "sys/*.h",
-    ]),
+    hdrs = glob(
+        [
+          "sys/*.h",
+        ],
+        exclude = [
+          "sys/*_test.h",
+        ],
+    ),
     visibility = ["//visibility:public"],
 )
 
 cc_library(
     name = "argcv_char",
     srcs = glob(
-        ["char/*.c"],
-        exclude = ["char/*_test.c"],
+        [
+          "char/*.c",
+          # "char/*.cc",
+        ],
+        exclude = [
+          "char/*_test.cc",
+        ],
     ),
-    hdrs = glob([
-        "char/*.h",
-    ]),
+    hdrs = glob(
+        [
+          "char/*.h",
+        ],
+        exclude = [
+          "char/*_test.h",
+        ],
+    ),
     visibility = ["//visibility:public"],
 )
 
@@ -61,6 +76,7 @@ cc_test(
     # copts = ["-Iexternal/gmock_archive/googletest/include"],
     srcs = glob([
         "sys/*_test.cc",
+        "sys/*_test.h",
     ]),
     deps = [
         "//external:gtest_main",
@@ -75,6 +91,7 @@ cc_test(
     # copts = ["-Iexternal/gmock_archive/googletest/include"],
     srcs = glob([
         "char/*_test.cc",
+        "char/*_test.h",
     ]),
     deps = [
         "//external:gtest_main",
