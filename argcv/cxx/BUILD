@@ -77,7 +77,7 @@ cc_inc_library(
     ],
   ),
   deps = [
-    "//external:gtest_main",
+    "//external:glog",
   ],
 )
 
