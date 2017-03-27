@@ -228,7 +228,7 @@ class TcpListenPool {
       close(fd_);
       LOG(INFO) << "[conn::deactive] close " << index_ << " (fd=" << fd_ << ")";
 #ifdef __EPOLL__
-      epoll_ctl(pool_->_ev_fd(), EPOLL_CTL_DEL, fd, NULL);
+      epoll_ctl(pool_->ev_fd(), EPOLL_CTL_DEL, fd, NULL);
 #elif __KQUEUE__
       struct kevent ke;
       EV_SET(&ke, fd_, EVFILT_READ, EV_DELETE, 0, 0, NULL);
