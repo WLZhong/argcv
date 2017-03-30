@@ -326,6 +326,7 @@ boost_library(
   name = "detail",
   deps = [
     ":limits",
+    ":config",
   ],
 )
 
