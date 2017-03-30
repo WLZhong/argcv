@@ -515,6 +515,7 @@ boost_library(
   deps = [
     ":concept_check",
     ":optional",
+    ":detail", # external/boost/boost/range/config.hpp:14:39: fatal error: boost/detail/workaround.hpp: No such file or directory
   ]
 )
 
