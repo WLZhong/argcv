@@ -517,6 +517,8 @@ boost_library(
     ":concept_check",
     ":optional",
     ":detail", # external/boost/boost/range/config.hpp:14:39: fatal error: boost/detail/workaround.hpp: No such file or directory
+    ":preprocessor",
+    ":mpl", # in extract_optional_type.hpp
   ]
 )
 
