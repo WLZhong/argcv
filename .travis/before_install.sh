@@ -29,6 +29,7 @@ fi
 # install miniconda
 #if [ -f miniconda.sh ]; then
   echo "install miniconda"
+  chmod +x miniconda.sh
   ./miniconda.sh -b -p $HOME/mc
   rm -rf miniconda.sh
 #fi
