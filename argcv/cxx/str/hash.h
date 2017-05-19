@@ -33,12 +33,12 @@ namespace str {
 
 // a hasher, from string to uint64_t
 // usage :
-// argcv::string::BLZHasher h;
+// argcv::string::BlzHasher h;
 // printf("%llu\n",h.hash("hello",0));
-class BLZHasher {
+class BlzHasher {
  public:
-  BLZHasher() { init(); }
-  ~BLZHasher() {}
+  BlzHasher() { init(); }
+  ~BlzHasher() {}
 
   // k : string , offset shall not too large , 0-3 in suggestion
   uint64_t hash(const std::string &k, uint16_t offset = 0) {
